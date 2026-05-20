@@ -206,6 +206,10 @@ df_graph = pd.DataFrame({
     "Affluence": predictions
 })
 
+st.write("Predictions :", predictions)
+st.write("Type :", type(predictions[0]))
+st.write("NaN :", pd.isna(predictions).sum())
+
 fig = px.line(
     df_graph,
     x="Heure",
