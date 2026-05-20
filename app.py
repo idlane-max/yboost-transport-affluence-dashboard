@@ -191,11 +191,13 @@ predictions = []
 for h in range(24):
 
     donnees_h = donnees.copy()
-    donnees_h["Heure"] = h
 
-    pred = modele.predict(
-        pd.DataFrame([donnees_h])
-    )[0]
+    donnees_h["Heure"] = h
+    donnees_h["Heure_Debut"] = h
+
+    df_temp = pd.DataFrame([donnees_h])
+
+    pred = modele.predict(df_temp)[0]
 
     predictions.append(pred)
 
