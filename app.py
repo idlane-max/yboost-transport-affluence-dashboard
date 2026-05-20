@@ -199,16 +199,17 @@ for h in range(24):
 
     pred = modele.predict(df_temp)[0]
 
-    predictions.append(pred)
+    predictions.append(float(str(pred.item())))
 
 df_graph = pd.DataFrame({
     "Heure": range(24),
     "Affluence": predictions
 })
 
-st.write("Predictions :", predictions)
-st.write("Type :", type(predictions[0]))
-st.write("NaN :", pd.isna(predictions).sum())
+df_graph["Affluence"] = pd.to_numeric(
+    df_graph["Affluence"],
+    errors="coerce"
+)
 
 fig = px.line(
     df_graph,
